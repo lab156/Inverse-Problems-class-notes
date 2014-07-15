@@ -1,0 +1,41 @@
+%% 24 de abril
+Let $A_{m\times n}$
+\begin{center}
+\begin{tabular}{cc}
+\textbf{Tikhonov} & \textbf{Wiener} \\
+$x_T = (A^TA + \delta^2 I )^{-1} A^T b$ & $A^T(A\, A^T + \delta^2 I)^{-1} = x_W$\end{tabular}
+\end{center}
+note that $A^T A$ is an $n\times n$ matrix and $A\, A^T$ is $m\times m$.
+
+Note that only the identity operator works here; if we have $(A^T a + \delta^2 L^T L)A^T b$ this is the answer to:
+$$\argmin \{ |Ax-b|^2_2 + \delta |Lx|^2_2 \}$$
+if $L$ is invertible  $z=L x$ and $x=L^{-1}z$
+$$|A\, L^{-1} z - b |^2 + \delta |z|^2$$
+$\tilde A + A\, L^{-1}$  and $\tilde A w = A\, L^{-1} w$ and solving
+$$Ly=w \implies y=L^{-1}w$$
+Before we show this, note that (\ref{discrep}) is the discrepancy evalueated at $\mu$ and done other stuff to it.
+\begin{equation} \label{discrep}
+I - A(A^T A + \frac 1\mu I)^{-1} A
+\end{equation}
+Expanding into the SVD $A= U\Sigma V^T$. We have seen previously that (\ref{discrep})$=(\mu A\, A^T + I )^{-1}$ and substituting $A = U\Sigma V^T$ and $I=V\,V^T$ we get: 
+$$I+ U\Sigma V^T \left[ V(\Sigma^T \Sigma + \frac 1\mu I)V^T \right]^{-1} V\Sigma U^T $$
+simplifies to:
+\begin{gather*}
+= I + U\begin{bmatrix} \sigma_1 & 0 & \\ & \ddots & \\ & 0 & \sigma_n \end{bmatrix} \begin{bmatrix} \frac{\mu}{\mu \sigma_1^2 + 1} & & \\ & \ddots & \\ & & \frac{\mu}{\mu \sigma_n^2 + 1} \end{bmatrix} \begin{bmatrix} \sigma_1 & \ldots & 0\\ & \ddots & \\ & & \sigma_n \end{bmatrix} U_m^T \\
+= I - U \begin{bmatrix} \frac{\mu \sigma_1^2}{\mu \sigma_1^2 + 1} & & \\ & \ddots & \\ & & \frac{\mu \sigma_n^2}{\mu \sigma_n^2 + 1} \end{bmatrix} U^T
+\end{gather*}
+Using that 
+$$ 1- \frac{\mu \sigma_i^2}{\mu \sigma_i^2 +1} = \frac{1}{\mu\sigma_i^2 + 1}$$
+This turns out to be:
+\begin{equation*}
+U\begin{bmatrix} \frac{1}{\mu\sigma_1^2 + 1} &        & & & \\
+                                             & \ddots & & & \\
+                                             & &\frac{1}{\mu\sigma_n^2 + 1}  & &\\
+                                            &        &  &1& \\
+                                            &        &  & &1 \\
+\end{bmatrix}
+\end{equation*}
+The other side can be written in the same way. Another way to see this (note that this is not as convenient) is to write the term as a series:
+$$\delta^2 \sum_{n=1}^\infty \left( \frac{A^T A}{\delta^2} \right)^n A^T $$
+turns out to be equal to:
+$$\delta^2 A^T \sum_{n=1}^\infty \left( \frac{A\, A^T}{\delta^2} \right)^n$$

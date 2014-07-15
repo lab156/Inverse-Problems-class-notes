@@ -1,0 +1,42 @@
+%25 de marzo
+As a reference in the textbook use |[ christian 138 ]|.
+
+We wanto to silve $Ax=b$ and the least squares formulation $  A^TAx = A^T b$ the Tikhonov's Regularization:
+$$(A^TA + l^2I)x = A^Tb$$
+\begin{ddef}
+The \textbf{Landauweber Iteration} is defined as:
+$$x^{(k)} = x^{(k-1)} + F(A^TA) A^T r^{(k-1)}$$
+and $x^{(0)}$ is an initial guess normally 0.
+\end{ddef}
+For each $x^{(n)} \to r^{(n)} = b-Ax^{(n)}$ in general $F(A^TA)$ is a rational function and the simplest case if $F(A^TA) = \omega \in \RRR$ where $0<\omega < |A^TA|_2^{-1}$ and $|A^TA|_2^{-1} = \frac{1}{\sigma_1^2}$
+$$A= \sum_{i=1}^n u_i\sigma_i v_i^T$$
+then since $F$ is a function of $A^TA$
+\begin{gather*}
+F(A^TA) = \sum_{i=1}^n v_iF(\sigma_i^2) v_i^T\\
+x_{reg} = \sum_{i=1}^n f_i \frac{u_i^Tb}{\sigma_i} v_i\\
+x^{(k)} = \sum_{i=1} ^n f^{(k)}_i \frac{u_i^Tb}{\sigma_i} v_i
+\end{gather*}
+where we define  the filter $f_i^{(k)}$ as:
+$$f_i^{(k)} = 1-(1-\sigma_1^2F(\sigma_1^2))^2$$
+for $k=1,2,3,\ldots$. 
+\begin{description}
+\item[Case 1] $\sigma_i << \omega \implies f_i^{(k)} \approx k\omega \sigma_i^2$
+\item[Case 2] $\sigma_i$ large $\implies f_i^{(k)} \approx 1$ 
+\end{description}
+This method can be easily modified to account for constraints:
+$$x^{(k) }= P(x^{(k-1)}+\omega A^Tr^{(k)})$$
+
+\subsection{Variations of the Landweber Iteration}
+\begin{gather*}
+F(A^TA) = (A^TA + l^2 I)^{-1} \\
+x^{(k)}=(A^TA + l^2 I)^{-1} (A^Tb + l^2x^{(k)})
+\end{gather*}
+This is called iterated Tikhonoff's Regularization or ART Algebraic Reconstruction Technique or the Kaszman Methid Computerized Tomography. $Ax=b$ for $i=1,\ldots,m$ where $A_{m\times n}$ 
+$$x^{\text{new}} \Leftarrow x^{\text{old}} + \frac{b-a_i^Tx^{\text{old}}}{|a_i|_2^2} a_i$$
+In this method \emph{New iteration=projection of old} on the hyperplane $\{z| a_i^Tz = b_i \}$
+
+\subsection{Krylow Subspace Iteration}
+\begin{ddef}
+The \textbf{Krylow Subspace }is defined as:
+$$\K_l(A,b) = \text{span} \{b,Ab,A^2b,\ldots,A^{l-1}b \}$$
+\end{ddef}

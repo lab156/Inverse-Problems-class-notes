@@ -1,0 +1,57 @@
+%27 de febrero
+\begin{remarks}
+The normalization error has to be taking relation to the magnitudes of the values of the rest of the problem. For example if $\tilde b = b+\eta$ and $\theta = \text{randn\footnote{This is of course the Matlab command}}(n)$ then the error $\eta$ can be: $$ \epsilon \frac{\theta}{|\theta|} |b| = \eta$$
+thus $|\eta|/|b|= \epsilon$  
+\end{remarks}
+
+We continue comparing the methods. We have defined $A,L$  and the generalized SVD method uses:
+\begin{gather*}
+A= U \begin{bmatrix} \Sigma & 0 \\ 0 & I \end{bmatrix}X ^{-1}   \\
+L = V[M\ 0 ] X ^{-1}    
+\end{gather*}
+On the other hand the SVD decomposition: $A= \tilde U \tilde \Sigma \tilde V^T$ as always $Ax=b$ and assume $r= \text{rank}(A)>k$ then using the Truncated Singular Value Decomposition:
+$$x^{(k)}_{\text{TSVD}} = \sum_{i=1}^k \frac{1}{\sigma_i} \langle u_i | b \rangle \tilde v_i$$
+and we had defined 
+$$x_l = \argmin \left\{ |Ax-b|^2 + l^2 |Lx|^2 \right\}$$
+\begin{ddef}
+The \textbf{Moore Penrose generalized Inverse} is written and defined as:
+$$A^\dagger = \sum_{i=1}^r \frac{1}{\tilde \sigma_i} \tilde v_i \tilde u_i^T$$
+The least squares solution can be thus abbreviated as $x_{LS} = A^\dagger b$.
+\end{ddef} 
+
+\begin{ddef}
+A \textbf{Weighted Generalized Inverse} of $L$ is the generalized inverse of $L$ . It acts almost like an inverse of $L$ but used in conjunction with $A$.
+$$L_A^\dagger = (I - (A(I_n- L^\dagger L))^\dagger A)^\dagger$$
+\end{ddef}
+
+\begin{teorema}
+If $p\geq n$ where n in the \# of rows in $L$ implies $L^\dagger_A = L^\dagger$; note that $A^\dagger _{n\times m}$ so $L^\dagger_{n\times p} $
+\end{teorema}
+The expression for $L^\dagger_A$ collapses when $L\dagger L$. If $L$ is invertible change of variable:
+\begin{gather*}
+\bar x = Lx\\
+\bar A = AL ^{-1} \\
+\bar b = b-Ax_0
+\end{gather*}
+The right Tikhonoff standard form:
+\begin{align*}
+x_0 &= (A(I-L\dagger L) ^dagger)b\\
+    &=\argmin \left\{ |\bar Ax - \bar b|^2 + l^2 |\bar x|^2 \right\}\\
+x &= L ^{-1} \bar x
+\end{align*}
+
+in general $L$ $p\leq n$
+\begin{gather*}
+\bar A = AL^\dagger _A \\
+x_0 = (A(I-L^\dagger L))^\dagger b\\
+x= L_A^\dagger \bar x + x_0 \\
+\bar x = \argmin \left \{|\bar A z - \bar b |^2 + l^2 |z|^2 \right \}
+\end{gather*}
+
+Filter Modulation let 
+$$x_l = \sum_{i=1}^n f_i \frac{u_i^T b}{\sigma_i} v_i$$
+and $f_i$ is called the filter factor. When using the truncated singular value decomposition the filter factor is for Tikhonov is:
+$$f_i = \frac{\sigma_i^2}{l^2 + \sigma_i^2}$$
+if $L\neq I$ we have:
+$$x_{l,L} = \sum _{i=1}^F f_i \frac{u_i^T b}{\sigma_i} + \sum_{i=p+1} (u_i^T b) v_i$$
+$f_i=1-\sigma_i^2$ The effect of introducing $L$ with $\ker(L)\neq \{0\}$ is protecting anything in the $\ker(L)$.

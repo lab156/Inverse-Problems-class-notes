@@ -1,0 +1,36 @@
+% 3 de febrero
+We have defined the operator:
+\begin{gather*}
+\K f\to \int_0^t K(s,t)f(t) dt = \int_0^1 ?????\\
+\int_0^t K(s,t) f(s)ds + \int_t^1 f(s)h(s)ds \\
+\langle h | f \rangle = \int_0^1 f(s)h(s)ds
+\end{gather*}
+
+\subsection{Quadrature Approach}
+Continuiuing with the operator:
+$$\int_0^1 K(s,t)f(t) dt = g(s)$$
+A cuadrature approximates the in the following way:
+$$\int_0^1 \phi(t)dt = \sum_j^n w_j \phi(t_j)$$
+where $w_j$ are called the weights and $t_i$ are the nodes; these two parameters give $2n$ degrees of freedom.\\
+Applying the quadrature approximation to the main problem:
+$$ \sum_{i=j}^n w_j K(s,t_j)f(t_j) = g(s)$$
+$f$ will be discretized as: $f=[f(t_1),f(t_2),\ldots,f(t_n)]$.\\
+Also if $s=s_1,\ldots,s_m$ calling $b_i=g(s_i)$ and $x_j=f(t_j)$ and the matrix $a_{ij}= w_j K(s_i,t_j)$ the discretized system look like $A_{m\times n}x=b$
+\subsection{Galerkin Approach}
+Choose the $\{\phi_i(s)\}$ basis functions and $\{\psi_j(t)\}$ ortogonal.\\
+Let $t\in [0,1]$ and $$f(t) = \sum_{i=j}^n \xi_j\psi_j(t)$$ note that $t$ is not discretized. Then:
+$$\int_0^1 K(s,t)\sum_{i=j}^n \xi_j\psi_j(t)dt=g(s)$$
+integrating both sides of this equation by $\phi_i(s)$:
+\begin{gather*}
+\sum_{i=j}^n \xi_j \int_0^1\int_0^1 K(s,t) \phi_i(s) \psi_j(t)ds\, dt= \int_0^1 g(s)\phi_i(s)ds\\
+\sum_{i=j}^n \xi_j \int_0^1\langle  K(s,t)\psi_j(t)ds| \phi_i(s) \rangle \, dt= \int_0^1 g(s)\phi_i(s)ds
+\end{gather*}
+In this case $b_i=\int_0^1 g(s)\phi_i(s)ds$ and $x=[\xi_1,\ldots,\xi_n]$ and:
+$$a_{ij} = \int_0^1\int_0^1 K(s,t) \phi_i(s) \psi_j(t)ds\, dt$$
+if we take $\phi_i(s)=\delta(s-s_i)$ then $\langle \psi_j(t) | \langle K(s,t)|\phi_i(s)\rangle \rangle = \langle\psi_j(t) | k_i(t)\rangle$ and according to me $k_i(t)=K(s_i,t)$
+
+\subsection{Tikhonoff Regularization}
+$Ax-b=0\implies |Ax-b|=0$. Basic idea: $\min\{|Ax-b|^2 + \lambda^2 |Lx|^2 \}$ the options are 1) Control the norm of $|f|_2$. 2) Control the norm of $|f'|_2$. 3) And control the norm of $|f''|_2$.\\
+
+
+

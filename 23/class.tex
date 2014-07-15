@@ -1,0 +1,47 @@
+% 22 de abril
+We will look at the problem when using $L\neq Id$ operators. In the last class:
+\[ C_l = \begin{bmatrix}
+\rho_1 & & & \\
+\sigma_2 & \rho_2 & & \\
+         & \sigma_3 & \ddots & \\
+         &          & \sigma_l & \rho_l 
+\end{bmatrix} \]
+$U_l$: the Lanczos vectors for $A\, A^T$ and $T_l = C_l C_l^T$ connection with the quadrature rule:
+\begin{gather*}
+A\, A^T = W\Lambda W^T\\
+\phi(\mu) = \Vert b - Ax_\mu \Vert ^2 \to \text{ via } I-A(A^TA + \mu^{-1} I )^{-1} A^T\\ 
+= (\mu A A^T + I )^{-1}\\
+= b^T W(\mu \Lambda + I )^{-2} W^T b\\
+=\sum_{j=1}^m \frac{\tilde \beta_j}{(\mu l_j + 1)^2} = \int_0^\infty \frac{1}{(\mu l + 1)} d\omega (l)
+\end{gather*}
+Using $[\beta_1,\ldots, \beta_n]^T = W^T b $ this is an empirical measure:
+\begin{gather*}
+\phi_l(\mu) := |b|^2 e^T(\mu C_l C_l ^T + Id_l )^{-2} \\
+\bar \phi_l(\mu) :=|b|^2 e_1^T(\mu \bar C_l \bar C_l ^T + Id_{l+1} )^{-2}e_1 
+\end{gather*}
+\emph{Fact}: $\phi_l \sim \phi$ and $\bar \phi_l \sim \phi$
+
+\begin{teorema}
+\begin{enumerate}[1)]
+\item $\phi_l$ is an $l-$ point of the Gauss quadrature applied to the measure $\omega(t)$.
+\begin{itemize}
+\item It is important to know that it is a Gaussian quadrature rule because we have error bounds and many other niceties.
+\end{itemize}
+\item $\bar \Phi_l$ is an $(l+1)$ point Gauss-Radon rule with the node fixed at 0.
+\begin{gather*}
+\Psi'(t) = -2\mu (\mu t + 1)^{-3} \\
+\Psi''(t) = 6 \mu^2 (\mu t + 1){-4} \\
+\Psi'''(t) = -24\mu^3 (\mu t + 1)^{-5}
+\end{gather*}
+we need to find $\mu$ and $l$ such that:
+$$\epsilon^2 \leq \phi_l(\mu) \quad \bar \phi(\mu) \leq \epsilon^2 \nu^2$$
+Using that $\phi_l(\mu) = \epsilon^2$ with Newton's method. We can start with $\mu_0 =0$. After finding an adequate value of $\mu$. Assume $\hat \mu$ had been found:
+$$x_{\hat \mu,l} = V_l y_{\hat \mu, l}$$
+where $y_{\hat \mu,l}$ solves the Galerkin equation
+$$V^T_l (A^TA + \mu^{-1} I ) V_l y_{\hat \mu,l} = V^T_l A^T b$$
+this is the same as taking:
+$$(\bar C_l^T + \hat \mu^{-1} I_l) y_{\hat \mu,l} = \sigma_1 C_l^T e_1$$
+taking $\sigma_1 = e_1^T c_l e_1$
+$$y_{\hat \mu,l} = \argmin \left| \begin{bmatrix} \hat \mu^{\frac 12} \bar C_l \\ I_l\end{bmatrix} y - \sigma_1 \hat \mu^{\frac 12} e_1 \right|$$
+\end{enumerate}
+\end{teorema}

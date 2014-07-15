@@ -1,0 +1,60 @@
+%25 de febrero
+We continue looking at heuristics of choosing Regularization parameters.
+
+Considering $L$ to define a seminorm. Still looking at the problem:
+$$ \min_x \{|Ax-b|^2 + l^2 |Lx|^2 \}$$
+Let $A$ and $L$ be such that $\nuc(A)\cap \nuc(L)=\{0\}$. If $z\in \nuc(A)$ then $Az=0$ and then $Lz\neq 0$.
+
+\begin{ddef}[Generalized Singular Value Decomposition]
+The matrix $A$ is factorized into:
+\begin{gather}
+A = U\begin{pmatrix} \Sigma & 0 \\ 0 & I \end{pmatrix} X ^{-1}    \\
+L= V[M | 0 ] X ^{-1}    
+\end{gather}
+$A_{m\times n}$ and $L_{p\times n}$ 
+\begin{itemize}
+\item  $U_{m\times m}$ is ortogonal.
+\item $V_{p\times p}$ is orthogonal.
+\item  $X ^{-1}_{n\times n} $ and has ortogonal columns i.e. $X^TA^T A X=I_{n\times n}$.
+\item $0\leq \sigma_1 \leq \sigma_2 \leq \ldots \leq \sigma_p \leq 1$
+\item $1\geq \mu_1 \geq \ldots \geq \mu_p > 0 $
+\item $\sigma_i^2 + \mu_i^2=1$ and the \textbf{generalized singular values} of $AL$ are $\gamma_i = \sigma_i/\mu_i$.
+\end{itemize}
+\end{ddef}
+
+Furthermore:
+\begin{gather*}
+XA^TAX= \begin{bmatrix}
+\Sigma^2 & 0 \\
+0     & I 
+\end{bmatrix} \\
+LX = V[M\, 0] \\
+X^TL^T = \begin{bmatrix}
+M^T \\ 0 \end{bmatrix} V^T 
+X^T L^T L X = \begin{bmatrix}
+M^T \\ 0 \end{bmatrix} V^T V \begin{bmatrix} M & 0 \end{bmatrix} 
+\end{gather*}
+
+\begin{examples}
+Consider a system of equations with $x$ length of 2000 and 20 equations. In this case $L$ is going to play a big role. For example, $L$ can be used to control the magnitude of the first derivative. A matrix $L_1$ that is a backward estimate for the first derivative of $x$ has the form is:
+\begin{equation}
+L_1 = \begin{bmatrix} 1 & -1  &   &       && \\
+                          &  1  & -1&       && \\
+                          &     &   & \ddots&& \\
+                          &     &   &       &1&-1\\
+                          &     &   &       & & 1
+\end{bmatrix} 
+\end{equation}
+This matrix is of size $(n-1)\times n$ and $\nuc(L_1) = \{[c,c,\ldots,c]\}= \{c\mathbf{1} \}$
+
+An estimate for the second derivative is:
+\begin{equation}
+L_1 = \begin{bmatrix} -1 & 2  & -1  &       && \\
+                          &  -1  & 2&-1       && \\
+                          &     &   & \ddots&& \\
+                          &     &   &       -1&2&1
+\end{bmatrix} 
+\end{equation}
+The size in this case is $(n-2)\times n$ and of course the kernel is $\ker(L_2)=\{c\mathbf{1}, c[i] \}$ that correspond to the constant and linear functions.
+\end{examples}
+                         

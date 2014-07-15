@@ -1,0 +1,67 @@
+% 17 de abril 
+Assume that $Ax= \hat b$ where the hat means that we add an error $e= b-\hat b$.
+Using Tikhonov $(A^TA + \mu^{-1} I) x = A^T b$:
+\begin{gather*}
+x_p = (A^TA + \mu^{-1} I )^{-1} A^T b \\
+d_\mu = b- Ax_\mu \\
+\text{Recall that: } x_p \xlongrightarrow[\mu \to \infty]{} A^T b
+\end{gather*}
+Assume that $\epsilon = |e| $ and $|b_0| < |e| < |b|$ where $b_0$ is an orthogonal projection of $b$ onto $\nuc(A\, A^T)$. Now we want: $\hat \mu$ such that $|d\hat \mu | = \epsilon$ is no good. It is better that $\epsilon \leq |d\hat \mu| \leq \eta \epsilon$ with $\eta>1$. Putting it all together:
+\begin{gather*}
+\phi(\mu) = | b- A x_n |^2 \\
+A\, A^T = W \Lambda W^T 
+\end{gather*} 
+ $W$ is orthogonal and $ \Lambda$  is a diagonal matrix $ \{l_1,\ldots, l_m \}$  with $ l_i \geq 0$ with  $\phi(\mu) = \tau$.
+
+\begin{teorema}
+If $\phi$ is monotonic, convex $\mu>0$ then $\phi(\mu) = \tau$ has a unique solution for $\tau$ such that:
+$$ |b_0|^2 < \tau < |b|^2$$
+this is the solution. This identity is important:
+\end{teorema}
+The following identity is important to switch between $A\, A^T$ and $A^T A$
+$$ I - A(A^TA - \mu^{-1} I )^{-1} A^T = (\mu A\, A^T + I )^{-1}$$
+Note also that:
+$$ (\mu A\, A^T + I )^{-1} = \sum \left( \frac{A\, A^T}{1/\mu} \right)^n.$$
+
+\begin{teorema}
+$$\phi(\mu) = b^T (\mu A\, A^T + I)^{-1} b$$
+\end{teorema}
+Is decreasing  and convex. After $l-$step of the Lanczos bidiagonalization.
+\begin{align*}
+Ax_l &=  U_lC_l + \sigma_{l+1} u_{l+1} e_l^T\\
+A^T U_l &= V_l C_l^T
+\end{align*}
+$$b= \sigma_1 U_l e_1 \quad U_l^T u_{l+1} = 0 \quad U_l^T U = V_l^T V_l = I_l$$
+$\sigma_{l+1} \geq 0$ and if $\sigma_{l+1}\neq 0 $ with $|U_{l+1}|=1$
+
+\begin{gather*}
+C_l = \begin{bmatrix}
+p_1 & & & \\
+\sigma_2 & p_2 & & \\
+         & \sigma_3 & \ddots  & \\
+         &        & \sigma_l & p_l
+\end{bmatrix} \quad 
+\bar C_l = \begin{bmatrix}
+\rho_1 & & & \\
+\sigma_2 & \rho_2 & & \\
+         & \sigma_3 & \ddots & \\
+         &          & \sigma_l & \rho_l 
+\end{bmatrix}
+\end{gather*}
+
+$\phi(\mu) = |b- Ax_\mu|^2$ 
+$$ A\, A^T U_l = U_l C_l C_l^T + \rho_l \sigma_{l+1} u_{l+1} e_l^T$$
+We have seen that 
+\begin{gather*}
+\phi(\mu) = |b-Ax_\mu|^2 = b^T (\mu A\, A^T + I)^{-2} b\\
+\phi_l(\mu) := |b|^2 e_1^T (\mu C_l C_l^T + I_l )^{-2} e_1\\
+\bar \phi_l(\mu) := |b|^2 e_1^T (\mu \bar C_l C_l^T + I_l )^{-2} e_1
+\end{gather*}
+\begin{remarks}
+Fact: $\phi_l(\mu) $ and $\bar \phi_l(\mu)$ are approximations of $\phi(\mu)$
+\begin{gather*}
+\phi(\mu) = b^T W (\mu \Lambda  + I)^{-2} W^T b\\
+= \sum_{j=1}^m \frac{\beta_j^2}{(\mu l_j + 1)^2 } = \int_0^\infty \frac{1}{(\mu l + 1)^2 } d\omega(l)
+\end{gather*}
+\end{remarks}
+Where we interpret the last integral as a Riemann Stieltjes.

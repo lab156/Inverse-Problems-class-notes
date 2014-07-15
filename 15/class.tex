@@ -1,0 +1,21 @@
+% 20 de marzo
+With the system $Ax=b$ if $r=b-Ax$ the solution to $A^Tr=0$ minimized the norm of $r$ (the residual) we can say $r$ is orthogonal to the range of $A$. Note that $Ax=x_1 a_1 + \cdots + x_n a_n$ and $r$ has to be orthogonal to the columns of $A$. We want to minimize the norm of 
+\begin{gather*}
+\min \left\{ |b-Ax|^2 + l^2 |Lx|^2\right \}\\
+\begin{bmatrix} A \\ lL \end{bmatrix} x = \begin{bmatrix} b \\ 0 \end{bmatrix} \xrightarrow{\text{NE}} (A^TA + l^2 L^TL) x = A^Tb
+\end{gather*}
+Let $x_{ls}$ be the solution to $A^TAx=A^Tb$ then it is obvious that $|r_l|\geq |r_{ls} |$.
+
+\subsection{Iterative Methods}
+In these methods we take care in only accessing $A$ in the form of the product vector $Ax$ and $A^Tz$.
+
+We start with $x^{(0)} $ produce a sequence $x^{(1)} \cdots x^{(n)} $ then $x=$ a solution for $Ax=b$.
+
+In the Tikhonov's Regularization the system has the form:
+$$(A^TA + l^2L^TL) x = A^Tb$$
+
+\begin{ddef}
+Let $Ax=b$ and $A$ is very ill-conditioned. The \textbf{Landwebe Iteration} is defined as:
+$$x^{(k)} = x^{(k-1)} + \omega A^T r^{(k-1)} $$
+where $r^{(k)}=b-Ax^{(k-1)}$.
+\end{ddef}

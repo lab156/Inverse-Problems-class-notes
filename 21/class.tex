@@ -1,0 +1,35 @@
+% April 15
+The methods we have studied until now:
+\begin{enumerate}
+\item Tuncated Singular Value Decomposition.
+\item Tikhonov Regularization.
+\item Iterative Methods.
+\end{enumerate}
+
+We wish to join Iterative Methods and the other two.
+
+\subsection{Lanczos Bidiagonalization}
+Let $T_l$ be a tridiagonal matrix sucha that $A^TA Q_l = Q_{l+1} \bar T_k$ where:
+\[ \bar T_l = \left[ \begin{array}{ccc} &T_l& \\ 
+&\cdots& \\
+0 & 0 & *
+\end{array} \right] \]
+
+and satisfy the equation $A^TA\,Q_l = Q_l T_l + r_l e_l^T$
+and the matrix:
+$$\begin{bmatrix} 
+\alpha_1 & \beta_1 & 0 & 0 \\
+\beta_1  & \alpha_2& \ddots & 0\\
+0 & \ddots & \ddots & \beta_{l-1} \\
+0 & 0 & \beta_{l-1} & \alpha_l
+\end{bmatrix}$$
+we go for $B$ a bidiagonal matrix such that if $V\ U$ are orthogonal vectors of length 1
+\begin{gather*}
+A\, V = U\,B \\
+A^T U = V\, B^T \\
+r_k = Av_k - \beta_{k-1} u_{k-1} \\
+p_k = A^T u_k - \alpha_k v_k \\
+Av_k = \alpha_k u_k + \beta_{k-1} u_{k-1} \\
+A^T u_k = \alpha_k v_k + \beta_k v_{k+1}
+\end{gather*}
+The last couple of formulas are the index that we iterate on.

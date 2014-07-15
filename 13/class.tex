@@ -1,0 +1,42 @@
+% 6 de marzo
+$$ x_{lL} = \argmin\{ |Ax-b|^2 + l^2|Lx|^2 \}$$
+The Truncated Singular Value Decomposition:
+$$x^{(k)}= \sum_{j=1}^k \frac{u_j^T b}{\sigma_j} v_j$$ 
+$Ax ^{ex} = b ^{ex} $ this is the exact values; but in reality we need to define:
+$$Ax = b ^{ex}  + \eta $$
+how do we target our regularization parameters, define $\delta_y = |\eta|$.\\
+We target an $x$ such then:
+$$|Ax-b| \leq \alpha |\eta| $$
+We will replace $|\eta |$ by $\delta$.\\
+Error in the modelling vrs, the error in the data.\\
+There is a relationship between the norm of the solution growth vrs norm of the discrepancy.
+\begin{ddef}[Discrepancy]
+$$ d(x) = |Ax-b|^2$$
+In the case of the Tikhonoff Singular Value Decomposition with $\alpha= l^2$
+$$d(\alpha) = |Ax_\alpha - b |^2$$
+In the set:
+$$M_\delta = \{\alpha >0 : d(\alpha) \leq \delta^2 \} \neq \emptyset$$
+where $\delta$ is the estimate of the norm of error then:
+$$\delta=\max\{\alpha \in M_\delta \}$$
+\end{ddef}
+ with the new parameters we have:
+$$x_\alpha \min \{|Ax - b|^2 + \alpha|x|^2 \}$$
+It makes sense to look for $f$. \\
+Let $L=I$ and $A= U\Sigma V^T$
+$$b=\sum_{j=1}^m (u_j^T b ) u_j$$
+$A$ are generally rank deficient in general $r=\rank(A)$.\\
+We have to project $b$ onto $\range(A)^\perp$ (Range of $A$) writing $b$ and picking out the part in the range of $A$
+$$b=\sum_{j=1}^r (u_j^T b ) u_j +  \sum_{j=r+1}^m (u_j^T b ) u_j$$
+
+\begin{teorema}
+$d(\alpha) = |Ax_\alpha - b|^2$ $alpha \geq 0$ is strictly increasing and $|Pb|^2 \leq d(\alpha) \leq |b|^2$ 
+\begin{proof}
+The formula for the Tikhonoff's Regularization is:
+$$x_\alpha \sum_{j=1}^r \frac{\sigma_j}{\sigma_j^2 + \alpha} (u_j^T b) v_j$$
+and substitute $x_\alpha$ in $Ax_\alpha -b$.\\
+We didn't finish the proof in class, there is no need really.
+\end{proof}
+\end{teorema}
+This is useful because we're looking for $d(\alpha)=\delta^2$ so this makes it easier to find.\\
+
+

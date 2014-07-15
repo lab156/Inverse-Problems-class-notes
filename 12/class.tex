@@ -1,0 +1,57 @@
+% 4 de marzo
+A ``Goldilock's Rule'': Too simple a test function won't show much detail.\\
+\subsection{Computing the Regularization Parameters}
+This is a standard in the field: Tikhonov assume $L=I_n$. With the system $Ax=b$in with more columns than rows (not appropiate for least squares), also $|Lx|_2^2$ small or zero:
+\begin{gather*}
+z\in \nuc(A) \implies Az=0\\
+x_i = \min\{|Ax-b|^2 + l^2 |Lx|^2 \}
+\end{gather*}
+Options for $L$:
+\begin{itemize}
+\item $L=I_n$
+\item $L=L_1 (n-1)\times n $
+\item $L=L_2 (n-2)\times n$
+\end{itemize} 
+\begin{equation}
+\begin{bmatrix}
+A \\ lL
+\end{bmatrix} [x] =
+\begin{bmatrix}
+b \\ 0
+\end{bmatrix} \label{eq:ssy}
+\end{equation}
+This is a least squares problems $A_{m\times n} $ and $L$ is about $(n-2)\times n$. With the requisite that $\nuc(A) \cap \nuc(L)=\{0 \}$ note that this condition assures the least squares solution exists.
+\begin{gather*}
+\begin{bmatrix}
+A \\ L
+\end{bmatrix} [z] =
+\begin{bmatrix}
+0 \\ Lz
+\end{bmatrix} \\
+0\neq z \in \nuc(A)\\
+z\notin \nuc(L) \implies  z\notin \nuc[(A\; \lambda L)^T]\\
+z\in \nuc(L) \text{ but } z\notin \nuc(A)
+\end{gather*}
+Now the solution to the equation \ref{eq:ssy}. 
+\begin{gather*}
+\begin{bmatrix}
+A^T & lL^T
+\end{bmatrix} \begin{bmatrix}
+A \\ lL
+\end{bmatrix}x  = (A^T \; lL^T) \begin{bmatrix} b \\ 0 \end{bmatrix}\\
+(A^TA + l^2 L^T L) x = A^Tb
+\end{gather*}
+is invertible because $\nuc(A) \cap \nuc(L) = \{0 \}$ or $(A\; L)^T$ is full Rank $$x_{L,l} = (\underbrace{A^TA + l^2L^T L}_{A^\dagger _{l^2,L}}) ^{-1} A^Tb$$
+note that in the case in which $A$ is invertible and $l=0$ then:
+$$(A^TA + l^2 L^T L)^{-1} A^T =    (A^TA  )^{-1}A^T = A^{-1}$$
+Normally the SVD could look like 
+\begin{gather*}
+A=U\Sigma V^T\\
+L=W\Lambda X^{-1}
+\end{gather*}
+This won't work; but using the GSVD and substituting into $(A^TA + l^2 L^T L)^{-1} A^T$ gives:
+\begin{gather*}
+\left [ X^T \Sigma^T \Sigma X^{-1} + l^2 X^{-T}\Lambda^2 X^{-1} \right]^{-1}X^{-T} \Sigma^T U^T\\
+=\left[X ^{-1} \left( \begin{pmatrix} \sigma_1^2 & & \\ & \ddots & \\ & & \sigma^2_p \end{pmatrix} + l^2 \begin{pmatrix} \mu^2 & & \\ & \ddots & \\ & & \mu^2_p \end{pmatrix}\right) X ^{-1} \right] ^{-1} X ^{-1} \Sigma ^T U^T
+\end{gather*}
+note that there are $p$ $\mu_i$.

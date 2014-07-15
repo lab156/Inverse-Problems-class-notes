@@ -1,0 +1,34 @@
+% 6 de febrero
+\subsection{Truncated Regularization Method}
+Let $A=U\Sigma V^T = \sum \sigma_i u_i v_i^T$.\\
+If the matrix $A$ is invertible: $$A^{-1}= V\Sigma^{-1}U^{-1} =\sum \frac{1}{\sigma_i} v_i u_i^T$$
+Now, we write $b=\sum \beta_i u_i$ note that we can because $Ax=b$. Note that to find $\beta_k=b\cdot u_k$.
+$$ x=V\Sigma^{-1} U^T b = V\Sigma^{-1} w$$
+$w=U^T b$ of course.
+\begin{equation*}
+V\Sigma ^{-1} \begin{bmatrix} u_1^Tb \\ u_2^Tb \\ \vdots \\ u_n^Tb \end{bmatrix} = V \begin{bmatrix} \frac{u_1^Tb}{\sigma_1} \\  \vdots \\ \frac{u_n^Tb}{\sigma_n} \end{bmatrix} = \sum \frac{u_j^T b}{\sigma_j}v_j
+\end{equation*}
+
+Now, we write the solution in terms of the base $v_i$: $x=\sum_{i=1}^n \alpha_i v_i$ and as before this means $\alpha_i=v_i^T x$. Substituting for $\alpha_i$ becomes: $x= \sum_{i=1}^n (v_i^T x)v_i$ \\
+\begin{equation}
+Ax= U\left\{\Sigma V^Tx\right\} = \begin{bmatrix} \sigma_1 v_1^T x \\ \sigma_2 v_2^T x \\ \vdots \\ \sigma_n v_n^T x \end{bmatrix} = \sum \sigma_i(v_i^Tx)u_i
+\end{equation}
+where as usual $u_i$ are the columns of $U$.\\
+If there is a solution to $Ax=b$ 
+\begin{gather*}
+x=\sum (v_i^T x)v_i \\
+\hat x = \sum \left[ v_j^Tx+\gamma_j \right] v_j = x+\sum y_iv_i\\
+Ax = Ax + \sum \sigma_j y_j u_j
+\end{gather*}
+As the values of $j$ get larger $\sigma_j$ get smaller; then $\sigma_j y_j $ becomes smaller.\\
+Similarly, let $\eta$ be the error vector in the reading of $b$, then:
+\begin{gather*}
+\tilde b = b+ \text{error} = \sum(u_i^T b + \eta_i)u_i\\
+A ^{-1} b = \sum_{i=1}^n \frac{u_j^T b + \eta_j}{\sigma_j} v_j\\
+=  \sum_{i=1}^n \frac{u_j^T b  }{\sigma_j} v_j + \sum_{i=1}^n \frac{ \eta_j}{\sigma_j} v_j
+\end{gather*}
+The first term is the solution for the exact $x$ and the second is the term produced by the noise.
+White noise = Uniform distribution.\\
+The problem with the error term is that as the $\sigma_j$ decrease the error term continue having the same range, then the term $\sum \frac{\eta_j}{\sigma_j}v_j $ increase and it ruins the solution. Thus, the best solution that we have access to is:
+$$ x_T = \sum_{j=1}^k \frac{u_j^T \tilde b}{\sigma_j} v_j$$
+The important question is: What is the value of $k$? 

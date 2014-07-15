@@ -1,0 +1,47 @@
+%27 de marzo
+We continue with the ART method. 
+\subsection{Row action Form}
+$k$-th iteration. Sweeps through the rows of $A$ which update $x^{(k-1)} \to x^{(n)}$. i.e. for $j=1,2,\ldots$
+$$x^{(k)} = x^{(k-1)} + \frac{b_j - a^T_j x^{(k-1)}}{a^T_j a_j} a_j$$
+\underline{Algorithm} (geometric Interpretation)
+\begin{enumerate}[1)]
+\item Take the $j$th row of A.
+\item Turn it into a vector in $\RRR^n$. Note; can compute $|a_j|$ ahead of time.
+\item Project orthogonally previous solution onto hyperplane $\{z: \  a^T_j z = b_j\}$
+\end{enumerate}
+
+\begin{teorema}
+If $A$ is a square and non-singular matrix, then:
+$$\left| A^{-1}b - x^{(k)_i} \right|_2^2 = \left| A^{-1}b - x^{(k)_{i-1}} \right|_2 - (b_i - a^T_i x^{(k)_{i-1}})^2$$
+$\implies$ resigual norm is non-increasing.
+\end{teorema}
+
+\begin{teorema}
+$a_i$ is rich in some components related to left singular vectors. \\
+$\theta_{ij}=$ angle between $a_i$ and $v_j$ from:
+$$\cos \theta_{ij} = \frac{a_i^T v_j}{|a_i|} = \frac{a^T_i}{|a_i|} v_j$$
+then substituting $a_i^T v_j = e^T_i A v_j$  one gets:
+$$\frac{e^T_i A v_j}{|a_i|} = \frac{\sigma_j e^T_i u_j}{|a_i|} = \frac{\sigma_j u_{ij}}{|a_i|}$$
+\end{teorema}
+
+\begin{ddef}
+The Krylow Subspace is defined as:
+$$\K_k(A^TA,Ab) = \spann\{A^Tb  , (A^TA)A^Tb, \ldots, (A^TA)^{k-1} A^Tb\}$$
+$\dim \K_k \leq k$
+\end{ddef}
+method is fundamentally going to:
+\begin{gather*}
+A^Tb = \omega_j \quad \omega_i \frac{\omega_i}{|\omega_i|} \quad \K_1\\
+\text{the second subspace}\\
+(A^TA)\omega_1 = \hat \omega_2, \quad \tilde \omega_2 = \hat \omega_2 - (\omega_1^T\hat \omega_2) \omega_1, \quad \omega_2  =\frac{\omega_2}{|\omega_2|} \\
+\text{ the third subspace}
+(A^TA)\omega_2 = \hat \omega_3, \quad \tilde \omega_3 = \hat \omega_3 - (\omega_2^T\hat \omega_3) \omega_2, \quad \omega_3  =\frac{\omega_3}{|\omega_3|} \\
+\omega_k = [\omega_1,\ldots, \omega_k ] _{n\times k}
+\end{gather*}
+
+$x^{(k)} \in \K_k \iff x^{(k) } $ linear combination of $\omega_1, \omega_2 , \ldots, \omega_k$.\\
+Then we can write $x^{(k)} = \omega_k \xi _k$ and:
+\begin{gather*}
+A^TAx= A^Tb\\
+((A^TA)w_k)\xi_k = A^Tb
+\end{gather*}

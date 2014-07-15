@@ -1,0 +1,15 @@
+Decomposing $f$ and $g$ $$f(t)= \sum_{i=1}^\infty (f\cdot v_i) v_i(t) \quad g(s) =\sum_{j=1}^\infty (g\cdot u_j )u_j(s)$$
+Substituting $K$ for its singular value decomposition we get: 
+    $$\int_0^1 K(s,t) f(t)dt = \sum_{i=1}^\infty \mu_i (f_i\cdot v_i) u_i(s)$$
+On the other hand $g(s) = \sum_j (g\cdot u_j)u_j(s)$ matching the coefficients we get that $\mu_i f\cdot v_i = g\cdot u_i$. If $\mu_i\neq 0$ then $ f\cdot v_i = (g\cdot u_i)/\mu_i$ This gives the important result: 
+    $$ f(t) = \sum_{l=1}^\infty \frac{g\cdot u_l}{\mu_l} v_l(t)$$ 
+
+\begin{remarks}
+We know that $\sum\mu_i^2 < \infty$ then $g\cdot u_l \to 0$ and has to do it faster than $\mu_i$ diverges.
+\end{remarks}
+
+\begin{teorema}[Picard's Condition]
+There exists square integral solution $f$ to the Fredholm's Integral Equation (IE) iff the r.h.s. satisfies: $\sum_i (u_i\cdot g /\mu_i)^2 < \infty$
+\end{teorema}
+
+The error in the left hand side is additive: $g=g^{exact}+\eta$ where $\eta$ is the error term. It is common that $\sum_i (\eta\cdot u_i)/\mu_i u_i$ diverges. This is a big problem with finding the solution in reality.

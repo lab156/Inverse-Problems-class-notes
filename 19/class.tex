@@ -1,0 +1,52 @@
+% 8 de abril
+Let $V_n = [ v_1, v_2, \ldots, v_n ]\; v_i^T v_j = \delta_{ij}$ (orthonormal basis) We will condider the following relationship:
+$$AV_k = V_k H_k + \text{Correction}$$
+here $v^j = b/|b| $ and $\tilde v\si{j+1} = Av\si{j}$ lastly, $h_{lj}= V^T A v\si{j}$.
+
+\begin{ddef}
+A \textbf{Hessemberg Matrix} is one which is almost triagular except for a non-zero sup-diagonal or sub-diagonal.
+\begin{enumerate}[(1)]
+\item $w\gets $ working vector.
+\item $\displaystyle w= Av\si{l} - \sum_{l=1}^j h_{ij} v\si{l} \implies w\bot v\si{1},v\si{2},\ldots, v\si{j}$.
+\item $h_{j+1,j} = |w| $ if 0 then stop and if not zero go on
+\item $v\si{j+1} = w/h_{j+1,j}$
+\end{enumerate}
+\end{ddef}
+
+\begin{ddef}
+The \textbf{Arnoldi decomposition} 
+$$AV_k = V_kH_{k,k} + we^T_k$$
+note that $we_k^T$ is  a matrix of rank 1. When $w=0$:
+\begin{gather*}
+AV_k = V_kH_{k,k}\\
+V_k^T A V_k = H_{k,k}\\
+\end{gather*}
+if $A$ is symmetric (which is usually the case) then $H_{k,k}$ is tridiagonal
+\begin{gather*}
+H_{k,k}= V^T_k A V_k = V^T A^T V_k\\
+= (H_{k,k})^T
+\end{gather*}
+\end{ddef}
+
+\begin{ddef}[Lanczos Tridiagonalization]
+Is a matrix of the form:
+$$T=\begin{bmatrix} 
+\alpha_1 & \beta_1 &       &\\
+\beta_1  & \alpha_2&\ddots &\\
+         &\ddots   &\ddots &\beta_{n-1} \\
+         &         &\beta_{n-1}&\alpha_n
+\end{bmatrix}$$
+$Q$ is such that $Q^TAQ = T$ we force $AQ= QT$ and look at the columns; the block looks like:
+\begin{gather*}
+\begin{bmatrix}
+           &\beta_{k-1}&      \\
+\beta_{k+1}&\alpha_k   &\beta_k\\
+           &\beta_k    &    
+\end{bmatrix}\\
+Aq_k = \beta_{k-1} q_{k-1} + \alpha_k q_k + \beta_k q_{k+1}\\
+\beta_0 q_0 = 0 \quad \alpha_k = q_k^T A q_k\\
+r_k = Aq_k = - \beta_{k-1} q_{k-1} - \alpha_k q_k = \beta_k q_{k+1}\\
+\beta_k = \pm |r_k|\\
+q_{k+1} = \frac{r_k}{\beta_k}
+\end{gather*}
+\end{ddef}

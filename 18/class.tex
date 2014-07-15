@@ -1,0 +1,28 @@
+% 3 de abril
+
+$Ax=b$ linear inverse and an Ill-posed problem. We define the discrepancy as:
+$$ q^{(k)} = b-Ax\si{k} \text{ discrepancy}$$
+The residual for the least square projection $A^TAx= A^Tb$ and:
+$$r\si{k} = A^Tb - A^TAx\si{k} = A^T d\si{k}$$
+calling as before $x\si{k}$ as the $k+1$ iterate and $x^*$ is the exact solution. For the Krilow method:
+$$x\si{k} \in \K_l(A^TA, A^Tb) = \spann\{A^Tb, (A^TA)A^Tb, \ldots, (A^TA)^{k-1}A^T b\}$$
+and the $k-$th iterate is calculated by
+$$x\si{k} = \argmin_{x\in \K_l} |Ax-b|$$
+$\{w_1,w_2,\ldots, w_k\}$ orthonormal basis for $\K_k$ we form the column:
+$$W_k = [w_1, w_2, \ldots, w_k]$$
+$x\si{k}\in \K_k \implies x\si{k}$ linear combination of basis vectors $\implies x\si{k} \in W_k \xi_k\; \xi_k \in \RRR^k$. Additionally $x\si{k} = W\xi\si{k}$ where 
+$$\xi\si{k} = \argmin_{\xi\in \RRR^k} |AW_k \xi - b|$$
+Calling $C=AW_k$ it becomes 
+$$\min_{\xi\in \RRR^k} |C\xi - b|$$ 
+We have $x\si{k} $ and want the next step $x\si{k+1}\in \K_{k+1}$ i.e.
+$$x\si{k+1} = \argmin_{x\in \K_{k+1}} |Ax-b|$$
+The matrix $k+1$ has the form:
+$$W_{k+1} = \begin{bmatrix} | & | \phantom{\ldots} & | & | \\
+                           w_1&w_2  \ldots         &w_k&w_{k+1}\\
+ | & | \phantom{\ldots} & | & | \end{bmatrix}$$
+Where we recycle the first $k$ columns of the matrix with the operation
+\begin{gather*}
+W_{k+1} = [W_k | W_{k+1}] _{x\si{k+1}}\\
+x\si{k+1} = W_{k+1} \xi\si{k+1}\\
+\xi\si{k+1} = \argmin_{\xi\in \RRR\si{k+1}} |\underbrace{AW_{k+1} \xi - b|}_{|d\si{k+1}|}
+\end{gather*}

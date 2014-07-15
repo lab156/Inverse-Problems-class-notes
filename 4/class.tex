@@ -1,0 +1,18 @@
+The \textbf{Heat Equation}: let $u:[0,1]\times \RRR^+ \to \RRR$ 
+$$ \partial_x^2 u - \partial_t u = 0$$
+we also have the \emph{boundary conditions} $u(0,t)=u(1,t)=1$ and the initial conditions $u(x,0)=u_0(x)$.\\
+This is the normal problem; the inverse one consists of getting this conditions out of a solution at time $t$. The solution is assumed and can be shown to have the form: $u(x,t)=\sum_j c_j(t)\sin(\pi j x)$\\
+Substituting this solution into the equation gives the equation for $c_j$ $c'_j(t)=-\pi^2 j^2 c_j(t)$ with solution $c_j(t) = \alpha_j e^{-\pi^2j^2 t}$ \\
+Then $u(x,t)=\sum_j \alpha_j e^{-\pi^2j^2 t} \sin(\pi j x)$ can be substituted in the the initial conditions by expressing $u(x,0)=\sum \alpha_j \sin(\pi j x)$
+\begin{remarks}
+Note that as $j $ increases the contribution to the sum will be smaller because $\alpha_j\to 0$.
+\end{remarks}
+
+The set $\{\sin(\pi k x): \ k\in \nn \}$ is ortogonal. This means $\sin(\pi k x)\cdot \sin(\pi l x)= \frac{1}{2}\delta_{lk}$ 
+
+If $g$ is square integrable, then $u_i\cdot g \to 0$ faster than $1/\sqrt{i}$. Picard's condition $\implies (u_i\cdot g)/\mu_i$. $1/\sqrt{i}\implies (u_i,g)$ must decay faster than $\mu_i/\sqrt{i}$. 
+$$f_k(t) = \sum_{i=1}^k \frac{u_i\cdot g}{\mu_i} v_i(t)$$   
+Tambien g se puede proyectar sobre la base $u_i$
+$$g_k(s) = \sum_{j=1}^k (g\cdot u_j)u_j(s)$$
+Sabemos que cuando $k\to \infty$ $f_k(t)\to f(t)$ and $g_k(s)\to g(s)$.\\
+On the other hand without Picard's condition $|f_k|_2\to \infty$.

@@ -1,0 +1,18 @@
+% 4 de febrero
+\subsection{Tikhonov Discretization}
+Reminder of the singular value descomposition: For any matrix $A_{m\times n} $ there exists matrices $U,V,\Sigma$ such that $U^*U=I_m$ and $V^*V=I_n$ and:
+$$A_{m\times n}= U_{m\times m}\Sigma V_{n\times n} $$
+\begin{remarks}
+\begin{itemize}
+\item The rank of  a non-singular matrix $A$ is $\min(m,n)$ 
+\item The \textbf{condition} number is:
+$$cond(A)=\frac{\text{larger singular value}}{\text{smallest singular value}\neq 0}$$
+\end{itemize}
+\end{remarks}
+It is useful to write the SVD as $AV=U\Sigma$. Also if $u_1,\ldots u_m$ are the columns of $U$ and $v_1,\ldots, v_n$ are the columns of $V$ then $AV=[Av_1,\ldots, Av_n]$ and $U\Sigma = [\sigma_1 u_1,\ldots, \sigma_m u_m] $.\\
+If $A ^{-1} $ exists then it is $(U\Sigma V^*)^{-1} = V\Sigma ^{-1} U^*$.\\
+The SVD can be written as $A=\sum_{i=1}^n \sigma_iu_iv_i^T$ \\
+Where $u_i$ and $v_i$ are the columns of the $U$ and $V$ matrix respectively.
+And the solution to the system $Ax=b$ :
+$$ x= V\begin{bmatrix} 1/\sigma_1 &   &   \\    & \ddots &  \\   &   &  1/\sigma_n \end{bmatrix} U^*b$$
+

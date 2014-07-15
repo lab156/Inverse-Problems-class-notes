@@ -1,0 +1,33 @@
+\subsection{Tikhonov Regularization}
+$$x_i = \min\{|Ax-b|^2 + l^2|Lx|^2 \}$$
+To start $L$ will be the identity operator, there are other options for $L$...
+\begin{teorema}
+Let $M_{m\times n}x=c$ be a linear system and $m\geq n$. Then the vector $x$ that minimizes $|Mx-b|$ is the solution of the system: $$M^T M x= M^Tc$$
+\end{teorema}
+Since we actually want to minimize $\min\{|Ax-b|^2 + l^2|Lx|^2 \}$ this is going to become another linear system:
+$$ A^TAx+l^2x=A^Tb$$
+Using the SVD of the matrix $A=U\Sigma V^T$ and substituing it in the equation above:
+$$(V\Sigma^T \Sigma V^T + l^2 I)x = V\Sigma^TU^Tb$$
+the $V$ on the left side can be removed because it is invertible, and the result looks like:
+\begin{equation*}
+\begin{bmatrix}
+\sigma^2_1 + l^2 & & \\
+        & \ddots & \\
+     & & \sigma_n^2+l^2
+\end{bmatrix}
+\begin{bmatrix}
+v_1^T x \\
+\vdots \\
+v_n^T x
+\end{bmatrix} =
+\begin{bmatrix}
+\sigma_1 u_1^T b\\
+\vdots\\
+\sigma_n u_n^T b\\
+\end{bmatrix}
+\end{equation*}
+Note that basically after finding the SVD we have basically solved the problem. The solution for vector $x_l$ that depends on the value of $l$:
+$$x_l = \sum_{j=1}^n \frac{\sigma_i}{\sigma_i^2 + l^2} (u^T_i b)v_i $$
+assume $\sigma_i \neq 0$ and we can take $l=0$
+$$x_0 = \sum_{j=1}^n \frac{u^T_i b}{\sigma_i } v_i $$
+smaller singular values are regularixed much more than bigger ones. As $i$ increases, the number of zero-crossings in $v_i$ increases; so this regularization is a tradeoff between ``detail for stability''. The $v_i$ with large $i$ representing detail here.

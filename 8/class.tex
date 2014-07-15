@@ -1,0 +1,12 @@
+We continue using using quadrature rules. $f$ is now a discretized vector. The action $K(s,t)$ is a matrix $(A)$. We are trying to recover the vector $x$ by solving the system $Ax=b$. The singular value descomposition $A=U\Sigma V^*$.
+
+The singular values decrease. We replace $A$ by:
+$$A_{(k)} = \sum_{i=1}^k \sigma_i u_i v_i^T$$
+Assuming that $A$ is invertible $x=A^{-1} b$ then:
+$$A ^{-1} b = \sum \frac{1}{\sigma_i} v_i u_i^T b$$
+note that $1/\sigma_i$ and $u_i^Tb$ are scalars; then;
+$$=\sum \frac{u_i^Tb}{\sigma_i}v_i$$
+\begin{ddef}[Truncated Singular Value Decomposition]
+Is solving the linear system by the approximation:
+$$x_{(k)}=\sum \frac{u_i^Tb}{\sigma_i}v_i$$
+\end{ddef}

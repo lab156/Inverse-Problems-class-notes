@@ -1,0 +1,3 @@
+"DEFINES A KEYBOARD SHORTCUT THAT SAVES THE CURRENT FILE
+"AND RUNS PDFLATEX TO IT
+map <Leader>a :w <bar> !pdflatex this_class.tex<CR>

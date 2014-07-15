@@ -1,0 +1,28 @@
+\begin{ddef}[Well-posed Problem]
+Is a problem (1) with solution, (2) unique solution and (3) the solution depends continuously on the data. Ill-posed are problems that are not well-posed.
+\end{ddef}
+
+\begin{remarks}
+The prototypical problem in inverse problems:
+    $$\int_\Omega syst \times input = output$$
+\end{remarks}
+
+\begin{ddef}[Fredholm Integral Equation]
+$$\int_0^1 K(s,t) f(t) dt = g(s) $$  
+where $0<s<1$, $K$ the smoothing kernel is known. $f$ is wanted. And $g$ is continuous.\\
+The discretization $\int_0^1 K_i f(t) dt =b_i$ where $K_i(t) \equiv K(s_i,t)$ is a continuous function of $t$ and $b_i=g(s_i)$. 
+\end{ddef}  
+
+\begin{teorema}[The Riemann Lebesgue Lemma]
+The quid to this theorem is that when the frequency goes to infinity we can expect the integral to tend to zero. $p\to \infty \implies g\to 0$.
+\end{teorema}
+
+\begin{ddef}
+\textbf{Singular Value Decomposition}
+Suppose $K(s,t)$ is square integrable: $$ |K|^2 = \int_0^1 \int_0^1 K(s,t)^2 ds\, dt<\infty$$ 
+Then $K$ can be written as: $K(s,t)=\sum_{i=1}^\infty \mu_i u_i(s)v_i(t)$ almost everywhere. $u_i$ and $v_i$ are ortonormal sequences.
+\end{ddef}
+
+\begin{ddef}[Fundamental Relation]
+Since the sequences are ortonormal: $\int_0^1 K(s,t)v_i(t) dt = \mu_i u_i(s)$
+\end{ddef}
