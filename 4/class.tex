@@ -8,11 +8,11 @@ Then $u(x,t)=\sum_j \alpha_j e^{-\pi^2j^2 t} \sin(\pi j x)$ can be substituted i
 Note that as $j $ increases the contribution to the sum will be smaller because $\alpha_j\to 0$.
 \end{remarks}
 
-The set $\{\sin(\pi k x): \ k\in \nn \}$ is ortogonal. This means $\sin(\pi k x)\cdot \sin(\pi l x)= \frac{1}{2}\delta_{lk}$ 
+The set $\{\sin(\pi k x): \ k\in \nn \}$ is orthogonal. This means $\sin(\pi k x)\cdot \sin(\pi l x)= \frac{1}{2}\delta_{lk}$ 
 
 If $g$ is square integrable, then $u_i\cdot g \to 0$ faster than $1/\sqrt{i}$. Picard's condition $\implies (u_i\cdot g)/\mu_i$. $1/\sqrt{i}\implies (u_i,g)$ must decay faster than $\mu_i/\sqrt{i}$. 
 $$f_k(t) = \sum_{i=1}^k \frac{u_i\cdot g}{\mu_i} v_i(t)$$   
-Tambien g se puede proyectar sobre la base $u_i$
+Also $g$ can be projected using the base $u_i$
 $$g_k(s) = \sum_{j=1}^k (g\cdot u_j)u_j(s)$$
-Sabemos que cuando $k\to \infty$ $f_k(t)\to f(t)$ and $g_k(s)\to g(s)$.\\
+We know that when $k\to \infty$ $f_k(t)\to f(t)$ and $g_k(s)\to g(s)$.\\
 On the other hand without Picard's condition $|f_k|_2\to \infty$.

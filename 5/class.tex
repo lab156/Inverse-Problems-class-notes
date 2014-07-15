@@ -15,7 +15,7 @@ where $w_j$ are called the weights and $t_i$ are the nodes; these two parameters
 Applying the quadrature approximation to the main problem:
 $$ \sum_{i=j}^n w_j K(s,t_j)f(t_j) = g(s)$$
 $f$ will be discretized as: $f=[f(t_1),f(t_2),\ldots,f(t_n)]$.\\
-Also if $s=s_1,\ldots,s_m$ calling $b_i=g(s_i)$ and $x_j=f(t_j)$ and the matrix $a_{ij}= w_j K(s_i,t_j)$ the discretized system look like $A_{m\times n}x=b$
+Also if $s=s_1,\ldots,s_m$ calling $b_i=g(s_i)$ and $x_j=f(t_j)$ and the matrix $$a_{ij}= w_j K(s_i,t_j)$$ the discretized system look like $A_{m\times n}x=b$
 \subsection{Galerkin Approach}
 Choose the $\{\phi_i(s)\}$ basis functions and $\{\psi_j(t)\}$ ortogonal.\\
 Let $t\in [0,1]$ and $$f(t) = \sum_{i=j}^n \xi_j\psi_j(t)$$ note that $t$ is not discretized. Then:
