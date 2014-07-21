@@ -27,10 +27,15 @@ integrating both sides of this equation by $\phi_i(s)$:
 \end{gather*}
 In this case $b_i=\int_0^1 g(s)\phi_i(s)ds$ and $x=[\xi_1,\ldots,\xi_n]$ and:
 $$a_{ij} = \int_0^1\int_0^1 K(s,t) \phi_i(s) \psi_j(t)ds\, dt$$
-if we take $\phi_i(s)=\delta(s-s_i)$ then $\langle \psi_j(t) | \langle K(s,t)|\phi_i(s)\rangle \rangle = \langle\psi_j(t) | k_i(t)\rangle$ and according to me $k_i(t)=K(s_i,t)$
+if we take $\phi_i(s)=\delta(s-s_i)$ then $\langle \psi_j(t) | \langle K(s,t)|\phi_i(s)\rangle \rangle = \langle\psi_j(t) | k_i(t)\rangle$ note that here we have done $k_i(t)=K(s_i,t)$
 
 \subsection{Tikhonoff Regularization}
-$Ax-b=0\implies |Ax-b|=0$. Basic idea: $\min\{|Ax-b|^2 + \lambda^2 |Lx|^2 \}$ the options are 1) Control the norm of $|f|_2$. 2) Control the norm of $|f'|_2$. 3) And control the norm of $|f''|_2$.\\
+$Ax-b=0\implies |Ax-b|=0$. Basic idea is to find $\min\{|Ax-b|^2 + \lambda^2 |Lx|^2 \}$ the options are: 
+\begin{enumerate}[1)]
+    \item Control the norm of $|f|_2$. 
+    \item Control the norm of $|f'|_2$. 
+    \item And control the norm of $|f''|_2$.\\
+\end{enumerate}
 
 
 
